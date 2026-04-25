@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteChat - 匿名討論SNS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">VoteChat</a>
+        <div class="nav-links" id="auth-links">
+            <!-- Auth links injected by JS -->
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="glass-panel text-center mb-2" style="padding: 3rem 2rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary);">議論し、討論し、発見する。</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">VoteChatは1対1の匿名討論プラットフォームです。リアルタイムで議論を交わし、投票を行い、誰が知的対決を制するか見届けましょう。</p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center;">
+            <button class="btn btn-primary" id="tab-all" onclick="loadDebates()">すべての討論</button>
+            <button class="btn btn-secondary" id="tab-waiting" onclick="loadDebates('waiting')">対戦相手待ち</button>
+            <button class="btn btn-secondary" id="tab-active" onclick="loadDebates('active')">進行中</button>
+        </div>
+
+        <div id="debates-container">
+            <div style="text-align: center; color: var(--text-secondary);">読み込み中...</div>
+        </div>
+    </main>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>討論の作成 - VoteChat</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">VoteChat</a>
+        <div class="nav-links" id="auth-links"></div>
+    </header>
+
+    <main class="container" style="max-width: 600px; display: flex; align-items: center;">
+        <div class="glass-panel" style="width: 100%;">
+            <h2 class="text-center" style="margin-bottom: 2rem;">新しい討論を作成する</h2>
+            <form id="create-form">
+                <div class="form-group">
+                    <label>討論のタイトル / トピック</label>
+                    <input type="text" id="title" class="form-control" placeholder="例：きのこたけのこ戦争、どちらが勝者か？" required>
+                </div>
+                <div class="form-group">
+                    <label>カテゴリ</label>
+                    <select id="category" class="form-control" required style="appearance: none;">
+                        <option value="政治">政治</option>
+                        <option value="テクノロジー">テクノロジー</option>
+                        <option value="エンタメ">エンタメ</option>
+                        <option value="哲学">哲学</option>
+                        <option value="食べ物">食べ物</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+                <div id="create-error" style="color: var(--danger-color); margin-bottom: 1rem; font-size: 0.9rem;"></div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">討論を開始する</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/create.js"></script>
+</body>
+</html>

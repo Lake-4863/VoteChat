@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>討論 - VoteChat</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">VoteChat</a>
+        <div class="nav-links" id="auth-links"></div>
+    </header>
+
+    <main class="container">
+        <div class="glass-panel" style="display: flex; flex-direction: column; height: 85vh; padding: 1.5rem;">
+            
+            <div id="debate-header" style="border-bottom: 2px solid var(--surface-border); padding-bottom: 1rem; margin-bottom: 1rem; text-align: center;">
+                <h2 id="d-title" style="margin-bottom: 0.5rem; font-size: 1.5rem;">読み込み中...</h2>
+                <div style="font-size: 0.9rem; color: var(--text-secondary); display: flex; justify-content: center; gap: 1rem; align-items: center;">
+                    <span id="d-status" class="badge">...</span>
+                    <span id="d-category"></span>
+                    <span id="d-time" style="font-weight: bold;"></span>
+                    <span id="d-viewers">閲覧者数: 1人</span>
+                </div>
+
+                <div id="admin-panel" class="hidden" style="margin-top: 1rem; padding: 0.5rem; background: var(--secondary-bg); border: 1px solid var(--danger-color); display: flex; justify-content: center; gap: 1rem; align-items: center;">
+                    <span style="color: var(--danger-color); font-weight: bold; text-transform: uppercase;">Admin:</span>
+                    <button onclick="adminTime(1)" class="btn btn-secondary">+1分</button>
+                    <button onclick="adminTime(-1)" class="btn btn-secondary">-1分</button>
+                    <button onclick="adminDeleteDebate()" class="btn btn-primary" style="background: var(--danger-color); border-color: var(--danger-color);">討論を削除</button>
+                </div>
+                
+                <div id="join-section" class="hidden" style="margin-top: 1rem;">
+                    <button id="btn-join" class="btn btn-primary">対戦相手(B)として参加</button>
+                </div>
+
+                <div id="vote-section" class="hidden" style="margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                        <button onclick="vote('A')" class="btn" style="background: var(--accent-a); border-color: var(--accent-a); color: white;">Aに投票 <span id="vote-count-a">(0)</span></button>
+                        <button onclick="vote('Truce')" class="btn" style="background: var(--text-secondary); border-color: var(--text-secondary); color: var(--bg-color);">停戦 <span id="vote-count-truce">(0)</span></button>
+                        <button onclick="vote('B')" class="btn" style="background: var(--accent-b); border-color: var(--accent-b); color: white;">Bに投票 <span id="vote-count-b">(0)</span></button>
+                    </div>
+                    <div class="vote-bar-container" style="width: 100%; max-width: 300px; height: 10px; background: var(--surface-border); display: flex; overflow: hidden; margin-top: 0.5rem;">
+                        <div id="vote-bar-a" style="height: 100%; background: var(--accent-a); width: 50%; transition: width 0.3s ease;"></div>
+                        <div id="vote-bar-b" style="height: 100%; background: var(--accent-b); width: 50%; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- Win/Loss Presentation -->
+                <div id="result-presentation" class="hidden" style="margin-top: 1.5rem; text-align: center; padding: 1rem; border-radius: 8px; font-size: 1.5rem; font-weight: bold; animation: popIn 0.5s ease-out;">
+                </div>
+            </div>
+
+            <div id="timeline" class="timeline" style="flex-grow: 1;">
+                <div style="text-align: center; color: var(--text-secondary); margin-top: 2rem;">投稿を読み込み中...</div>
+            </div>
+
+            <div id="post-section" class="hidden" style="margin-top: 1rem; border-top: 2px solid var(--surface-border); padding-top: 1rem;">
+                <form id="post-form" style="display: flex; gap: 1rem;">
+                    <textarea id="post-content" class="form-control" rows="2" style="resize: none;" placeholder="ここに主張を入力してください..." required maxlength="1500"></textarea>
+                    <button type="submit" class="btn btn-primary" style="height: auto;">投稿する</button>
+                </form>
+                <div id="post-error" style="color: var(--danger-color); font-size: 0.85rem; margin-top: 0.5rem;"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/debate.js"></script>
+</body>
+</html>
