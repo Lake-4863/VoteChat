@@ -23,10 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const sessionMiddleware = session({
-    secret: 'debate-sns-secret-key-12345',
+    secret: process.env.SESSION_SECRET || 'debate-sns-secret-key-dev',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 } // 1 day
+    cookie: { secure: process.env.NODE_ENV === 'production', maxAge: 1000 * 60 * 60 * 24 }
 });
 app.use(sessionMiddleware);
 
